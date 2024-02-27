@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
-int id_pass(char *,char *);
+#include<string.h>
+int id_pass(char [],char []);
 void new_id(char *,char *);
 void access_id(char *,char *);
 int main()
@@ -15,7 +16,7 @@ int main()
 	if(check=='y'||check=='Y')
 	{
 		try_again:
-		ans=id_pass(i_d,password);
+		ans=id_pass(id,pass);
 		if(ans)
 		{
 			access_id(i_d,password);
@@ -31,7 +32,6 @@ int main()
 		new_id(i_d,password);
 		goto enter_again;
 	}
-	access_id:
 		
 	return 0;
 }
@@ -46,7 +46,7 @@ void new_id(char *i_d,char *password)
 	gets(password);
 }
 
-int id_pass(char *i,char *p)
+int id_pass(char i[],char p[])
 {
 	char id[10],pass[50];
 	fflush(stdin);
@@ -55,7 +55,7 @@ int id_pass(char *i,char *p)
 	fflush(stdin);
 	printf("Enter password: ");
 	gets(pass);
-	if(*i==id&&*p==pass)
+	if((strcmp(id,i)==0)&&(strcmp(pass,p)==0))
 	{
 		return 1;
 	}
