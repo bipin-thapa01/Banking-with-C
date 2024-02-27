@@ -13,6 +13,7 @@ int main()
 	scanf("%c",&check);
 	if(check=='y'||check'Y')
 	{
+		try_again:
 		fflush(stdin);
 		printf("Enter id: ");
 		gets(id);
@@ -23,6 +24,11 @@ int main()
 		if(ans)
 		{
 			goto access_id;
+		}
+		else
+		{
+			printf("wrong id or password.\nTry again.\n");
+			goto try_again;
 		}
 	}
 	else if(check=='n'||check=='N')
