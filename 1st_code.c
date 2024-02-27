@@ -2,28 +2,23 @@
 #include<stdlib.h>
 int id_pass(char *,char *);
 void new_id(char *,char *);
-char *i_d,*password;
+void access_id(char *,char *);
 int main()
 {
 	char check,id[10],pass[50],ans;
+	char *i_d,*password;
 	i_d=id;
 	password=pass;
 	enter_again:
 	printf("Do you already have an account[y/n]?: ");
 	scanf("%c",&check);
-	if(check=='y'||check'Y')
+	if(check=='y'||check=='Y')
 	{
 		try_again:
-		fflush(stdin);
-		printf("Enter id: ");
-		gets(id);
-		fflush(stdin);
-		printf("Enter password: ");
-		gets(pass);
 		ans=id_pass(i_d,password);
 		if(ans)
 		{
-			goto access_id;
+			access_id(i_d,password);
 		}
 		else
 		{
@@ -43,7 +38,7 @@ int main()
 
 void new_id(char *i_d,char *password)
 {
-	flush(stdin);
+	fflush(stdin);
 	printf("Enter id: ");
 	gets(i_d);
 	fflush(stdin);
@@ -51,9 +46,16 @@ void new_id(char *i_d,char *password)
 	gets(password);
 }
 
-int id_pass(int *i,int *p)
+int id_pass(char *i,char *p)
 {
-	if(*i==*i_d&&*p==password)
+	char id[10],pass[50];
+	fflush(stdin);
+	printf("Enter id: ");
+	gets(id);
+	fflush(stdin);
+	printf("Enter password: ");
+	gets(pass);
+	if(*i==id&&*p==pass)
 	{
 		return 1;
 	}
@@ -62,4 +64,9 @@ int id_pass(int *i,int *p)
 		return 0;
 	}
 	
+}
+
+void access_id(char *i_d,char *password)
+{
+	printf("Welcome! User %s.\n",*i_d);
 }
