@@ -3,7 +3,7 @@
 #include<string.h>
 int id_pass(char [],char []);
 void new_id(char *,char *);
-void access_id(char *,char *);
+void access_id(char [],char []);
 int main()
 {
 	char check,id[10],pass[50],ans;
@@ -11,6 +11,7 @@ int main()
 	i_d=id;
 	password=pass;
 	enter_again:
+	wrong_input:
 	printf("Do you already have an account[y/n]?: ");
 	scanf("%c",&check);
 	if(check=='y'||check=='Y')
@@ -19,7 +20,7 @@ int main()
 		ans=id_pass(id,pass);
 		if(ans)
 		{
-			access_id(i_d,password);
+			access_id(id,pass);
 		}
 		else
 		{
@@ -31,6 +32,11 @@ int main()
 	{
 		new_id(i_d,password);
 		goto enter_again;
+	}
+	else
+	{
+		printf("wrong input!Try again\n");
+		goto wrong_input;
 	}
 		
 	return 0;
@@ -66,7 +72,7 @@ int id_pass(char i[],char p[])
 	
 }
 
-void access_id(char *i_d,char *password)
+void access_id(char id[],char pass[])
 {
-	printf("Welcome! User %s.\n",*i_d);
+	printf("Welcome! User %s.\n",id);
 }
