@@ -2,12 +2,14 @@
 #include<stdlib.h>
 #include<string.h>
 int id_pass(char [],char []);
-void new_id(char *,char *);
+void new_id(char [],char []);
 void access_id(char [],char []);
+FILE *ptr;
+int name_cnt=0,pass_cnt=0;
 int main()
 {
 	char check,id[10],pass[50],ans;
-	char *i_d,*password;
+	ptr = fopen("User.txt","a+");
 	i_d=id;
 	password=pass;
 	enter_again:
@@ -30,7 +32,7 @@ int main()
 	}
 	else if(check=='n'||check=='N')
 	{
-		new_id(i_d,password);
+		new_id(id,pass);
 		goto enter_again;
 	}
 	else
@@ -42,14 +44,25 @@ int main()
 	return 0;
 }
 
-void new_id(char *i_d,char *password)
+void new_id(char id[],char password[])
 {
+	int i;
 	fflush(stdin);
 	printf("Enter id: ");
-	gets(i_d);
+	gets(id);
+	for(i=0;id[i]!='\0';i++)
+	{
+		name_cnt++;
+	}
+	fgets(ptr,name_cnt,id);
 	fflush(stdin);
 	printf("Enter password: ");
 	gets(password);
+	for(i=0;id[i]!='\0';i++)
+	{
+		pass_cnt++;
+	}
+	fgets(ptr,pass_cnt,password);
 }
 
 int id_pass(char i[],char p[])
